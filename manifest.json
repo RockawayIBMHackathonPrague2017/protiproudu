@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "TipPlugin",
+  "version": "0.1",
+  "options_page": "options/options.html",
+  "permissions": [
+    "storage",
+    "webRequest"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.mall.cz/*"
+      ],
+      "js": [
+        "libs/jquery.js",
+        "tipplugin/app.js"
+        //"helpers/persistentKeyValue.js",
+        //  "options/values.js",
+        // "fio-ebroker/design.js"
+      ],
+      "css": [
+        //"fio-ebroker/design.css"
+      ],
+      //the name of the file to be injected
+      "run_at": "document_end"
+    }
+  ]
+}
