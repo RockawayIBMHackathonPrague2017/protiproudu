@@ -20,7 +20,7 @@
         // "fio-ebroker/design.js"
       ],
       "css": [
-        //"fio-ebroker/design.css"
+        "tipplugin/app.css"
       ],
       //the name of the file to be injected
       "run_at": "document_end"
