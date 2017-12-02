@@ -1,0 +1,51 @@
+version: '2'
+services:
+  php:
+    build: ../docker-images/php
+    expose:
+      - 9000
+    volumes:
+      - ../../backend:/var/www/app/
+    links:
+      - db
+      - cache
+
+  nginx:
+    build: ../docker-images/nginx
+    ports:
+      - "80:80"
+    links:
+    - php
+    volumes:
+      - ../../backend:/var/www/app/
+    environment:
+      APP_ENV: local
+      APP_DEBUG: 'true'
+      APP_KEY: SomeRandomKey!!!
+      APP_LOCALE: cs
+      APP_FALLBACK_LOCALE: en
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_DATABASE: lumen
+      DB_USERNAME: lumen
+      DB_PASSWORD: secret
+      MEMCACHED_HOST: cache
+      CACHE_DRIVER: memcached
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: lumen
+      MYSQL_USER: lumen
+      MYSQL_PASSWORD: secret
+    volumes:
+        - ../mysql/:/var/lib/mysql
+        - ../mysql_data/:/mysql_data/
+  cache:
+    image: memcached
+  adminer:
+    image: clue/adminer
+    ports:
+      - "8080:80"
