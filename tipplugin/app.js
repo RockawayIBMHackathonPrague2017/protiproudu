@@ -37,7 +37,7 @@ $(document).ready(function () {
 function createChat(text) {
     $("<a id='menu' class=\"float-button biAEAb\"><svg height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z\"></path><path d=\"M0 0h24v24H0z\" fill=\"none\"></path></svg></a>" +
         "    <div class=\"chat-container sc-iwsKbI chat\" style=\"width: 280px;\" width=\"350px\">" +
-
+        "<div class=\"rsc-header sc-gqjmRU glfuN\"><h2 class=\"rsc-header-title sc-VigVT dYUxQs\">Nákupní asistent</h2></div>" +
         "        <div class=\"chat-content sc-gZMcBi bxslzG\" style=\"overflow: hidden;\">" +
         "            <div class=\"chat-ts sc-dnqmqq efROPc\">" +
         "                <div class=\"chat-ts-image-container sc-htoDjs vmYlS\"><img class=\"chat-ts-image sc-gzVnrw hLGSaN\"" +
@@ -66,15 +66,15 @@ function createChat(text) {
         "        </div>" +
         "    </div>" +
         "</div>").appendTo(document.body);
-    $('.chat-content').hide();
+    $('.chat').hide();
 
     $("#menu").click(function () {
-        $('.chat-content').show();
+        $('.chat').show();
         $('#menu').hide();
     });
 
     $("#no").click(function () {
-        $('.chat-content').hide();
+        $('.chat').hide();
         $('#menu').show();
     });
 

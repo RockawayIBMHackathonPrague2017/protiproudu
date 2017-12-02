@@ -363,3 +363,29 @@
 .kZiwDc:not(:disabled):hover {
     opacity: 0.7;
 }
+
+.glfuN {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: #6e48aa;
+    color: #fff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    fill: #fff;
+    height: 56px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.glfuN h2 {
+    color: #fff !important;
+}
+
+/* sc-component-id: sc-VigVT */
