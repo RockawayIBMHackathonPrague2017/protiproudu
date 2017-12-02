@@ -5,7 +5,8 @@
   "options_page": "options/options.html",
   "permissions": [
     "storage",
-    "webRequest"
+    "webRequest",
+   "<all_urls>"
   ],
   "content_scripts": [
     {
