@@ -1,4 +1,4 @@
-console.log('initializing fio extension');
+console.log('initializing tiplugin extension');
 chrome.extension.sendRequest("show_page_action");
 
 $(document).ready(function () {
@@ -14,8 +14,10 @@ $(document).ready(function () {
                 //format: "json"
             })
                 .done(function (data) {
-                    if(data.url !== undefined) {
-                        addSmallBox(data.url, data.image, data.motivationText, data.price);
+                    if (data.url !== undefined) {
+                        addSmallBox(data.url, data.image, data.motivationText, data.price, 'Tento mobil nabídne lepší výkon za přibližně stejnou cenu');
+                    } else {
+                        addSmallBox(null, null, null, null, 'Tento produkt má nejlepší poměr cena / výkon. K vámi zvoleným parametrům.');
                     }
                 });
         })();
@@ -27,7 +29,9 @@ $(document).ready(function () {
                 //format: "json"
             })
                 .done(function (data) {
-                    createChat(data.text);
+                    if (data.text !== undefined) {
+                        createChat(data.text, data.image, data.motivationText, data.url);
+                    }
                 });
         })();
 
@@ -36,10 +40,10 @@ $(document).ready(function () {
 
 });
 
-function createChat(text) {
+function createChat(text, image, nameProduct, url) {
     $("<a id='menu' class=\"float-button biAEAb\"><svg height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z\"></path><path d=\"M0 0h24v24H0z\" fill=\"none\"></path></svg></a>" +
         "    <div class=\"chat-container sc-iwsKbI chat\" style=\"width: 280px;\" width=\"350px\">" +
-        "<div class=\"rsc-header sc-gqjmRU glfuN\"><h2 class=\"rsc-header-title sc-VigVT dYUxQs\">Nákupní asistent</h2></div>" +
+        "<div class=\"rsc-header sc-gqjmRU glfuN\"><h2 class=\"rsc-header-title sc-VigVT dYUxQs\">Rád pomohu s výběrem</h2></div>" +
         "        <div class=\"chat-content sc-gZMcBi bxslzG\" style=\"overflow: hidden;\">" +
         "            <div class=\"chat-ts sc-dnqmqq efROPc\">" +
         "                <div class=\"chat-ts-image-container sc-htoDjs vmYlS\"><img class=\"chat-ts-image sc-gzVnrw hLGSaN\"" +
@@ -47,15 +51,15 @@ function createChat(text) {
         "                                                                         alt=\"avatar\"></div>" +
         "                <div id='message' class=\"chat-ts-bubble sc-bZQynM message\">" + text + "</div>" +
         "            </div>" +
-        "            <div class=\"chat-os sc-EHOje edRFCv\">" +
-        "                <ul class=\"chat-os-options sc-ifAKCX gkhNlr\">" +
-        "                    <li class=\"chat-os-option sc-htpNat message-button\"><a id='yes' class=\"chat-os-option-element sc-bxivhb fMcZCH\">Ano</a></li>    " +
-        "                    <li class=\"chat-os-option sc-htpNat message-button\"><a id='no' class=\"chat-os-option-element sc-bxivhb fMcZCH\">Ne</a></li></ul>" +
-        "            </div>" +
+        "<div class='message-product'><a href='" + url + "'        <figure>" +
+        "            <img src=" + image + ">" +
+        "            <figcaption>" + nameProduct +
+        "</figcaption>\n" +
+        "        </figure></div>" +
         "           </div>" +
-        "        <div class=\"chat-footer sc-jzJRlG byHcWR\" style=\"display: none;\"><input class=\"chat-input sc-cSHVUG kCSgO\"" +
-        "                                                                               placeholder=\"Type the message ...\"" +
-        "                                                                               value=\"\" disabled=\"\" type=\"textarea\">" +
+        "        <div class=\"chat-footer sc-jzJRlG byHcWR\"><input class=\"chat-input sc-cSHVUG kCSgO\"" +
+        "                                                                               placeholder=\"Napište zprávu ...\"" +
+        "                                                                               value=\"\"  type=\"textarea\">" +
         "            <button class=\"chat-submit-button sc-kAzzGY kZiwDc\" disabled=\"\">" +
         "                <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 500 500\">" +
         "                    <g>" +
@@ -67,7 +71,8 @@ function createChat(text) {
         "            </button>" +
         "        </div>" +
         "    </div>" +
-        "</div>").appendTo(document.body);
+        "</div>"
+    ).appendTo(document.body);
     $('.chat').hide();
 
     $("#menu").click(function () {
@@ -97,17 +102,23 @@ function createChat(text) {
     });
 }
 
-function addSmallBox(url, image, motivationText, price) {
+function addSmallBox(url, image, motivationText, price, promotionText) {
 
-    var box = "<ul class=\"promo-boxes-wrapper\" style=\"margin-top: 10px\">" +
-        "<li class=\"promo-box\">" +
-        "<span class='promotion'>Tento mobil nabídne lepší výkon za přibližně stejnou cenu</span>" +
-        "<a style=\"background-image: url(" + image + "); margin-top: 5px;\" class=\"promo-box-head\" href=\"" + url + "\"></a>" +
-        "<a class=\"link--primary promo-box-title\" style=\"font-color:black;line-height: 1.4; letter-spacing: -0.01em; font-size: 1.1em;\" analytics-label=\"931819\" analytics-event=\"Box1\" analytics-category=\"TV - kampaň\" analytics-on=\"click\" href=\"" + url + "\">" +
-        "<span class=\"link--secondary\" style=\"text-decoration:underline;\">" + motivationText +
-        "</span>" +
-        price +
-        "</a></li>";
+    var urlString = url === null ? 'height: 50px;' : '';
+    var box = "<ul class=\"promo-boxes-wrapper\" style=\"margin-top: 10px;\">";
+
+    box += "<li class=\"promo-box\" style='" + urlString + "'>" +
+        "<span class='promotion'>" + promotionText + "</span>";
+
+    if (url !== null) {
+        box += "<a style=\"background-image: url(" + image + "); margin-top: 5px;\" class=\"promo-box-head\" href=\"" + url + "\"></a>" +
+            "<a class=\"link--primary promo-box-title\" style=\"font-color:black;line-height: 1.4; letter-spacing: -0.01em; font-size: 1.1em;\" analytics-label=\"931819\" analytics-event=\"Box1\" analytics-category=\"TV - kampaň\" analytics-on=\"click\" href=\"" + url + "\">" +
+            "<span class=\"link--secondary\" style=\"text-decoration:underline;\">" + motivationText +
+            "</span>" +
+            price +
+            "</a>";
+    }
+    box += "</li></ul>";
 
     $('form .detail-buttons').after(box);
 }
