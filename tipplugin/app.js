@@ -31,7 +31,7 @@ $(document).ready(function () {
         })();
 
         (function () {
-            var apiUrl = "https://api.logoman.cz/api/chatbot/" + productID;
+            var apiUrl = "https://api.logoman.cz/api/chatbot/index/" + productID;
 
             $.getJSON(apiUrl, {
                 //format: "json"
@@ -75,7 +75,7 @@ function createChat(text, image, nameProduct, url) {
 
     addMessagePost('message', null, null, robotIcon, 'Dobrý den,' +
         'pokud si nevíte rady s výběrem, rádi Vám poradíme. ' +
-        'Preferujete spíše výkon, nebo výdrž telefonu na baterii?', null);
+        'Preferujete spíše rychlost, nebo výdrž telefonu na baterii?', null);
     //addMessagePost('product', nameProduct, image, robotIcon, text, url);
 
     $('.chat').hide();
