@@ -17,11 +17,11 @@ $(document).ready(function () {
                     if (data.url !== undefined) {
                         var promotionText = "";
                         if (data.criterium == 'batery') {
-                            promotionText = 'Tento telefon nabízí delší výdrž na jedno nabití.';
+                            promotionText = 'Připlaťte si a získejte tak vyšší výkon telefonu.';
                         } else if (data.criterium == 'ram') {
-                            promotionText = 'Tento telefon nabízí lepší výkon.';
+                            promotionText = 'Připlaťte si a získejte tak vyšší výdrž na jedno nabití.';
                         } else if (data.criterium == 'both') {
-                            promotionText = 'Tento telefon nabízí lepší výkon a delší výdrž na jedno nabití.';
+                            promotionText = 'Připlaťte si a získejte tak vyšší výkon telefonu a delší výdrž na jedno nabití.';
                         }
                         addSmallBox(data.url, data.image, data.motivationText, data.price, promotionText);
                     } else {
@@ -95,6 +95,22 @@ function createChat(text, image, nameProduct, url) {
                 .done(function (data) {
                     if (data.text !== undefined) {
                         addMessagePost('message', null, null, robotIcon, data.text, null);
+                        if (data.successData === 'success') {
+                            (function () {
+                                var productID = $('[data-sel~="catalog-number"]').text();
+                                var apiUrl = "https://api.logoman.cz/api/chatbot/index/" + productID;
+
+                                $.getJSON(apiUrl, {
+                                    //format: "json"
+                                })
+                                    .done(function (data) {
+                                        if (data.text !== undefined) {
+                                            addMessagePost('product', nameProduct, image, robotIcon, text, url);
+                                        }
+                                    });
+                            })();
+
+                        }
                     }
                 });
         })();
@@ -146,6 +162,9 @@ function addMessagePost(type, nameProduct, image, robotIcon, text, url) {
     var message = "";
     if (type == 'product') {
         message = "        <div class='message-product message-post'>" +
+            "                <div class=\"chat-ts-image-container sc-htoDjs vmYlS\">" +
+            "                   <img class=\"chat-ts-image sc-gzVnrw hLGSaN\" src=\"" + robotIcon + "\" alt=\"avatar\">" +
+            "                </div>" +
             "           <a href='" + url + "'><figure><img src=" + image + "><figcaption>" + nameProduct + "</figcaption></figure></a>" +
             "        </div>";
     } else if (type == 'message') {
@@ -158,6 +177,4 @@ function addMessagePost(type, nameProduct, image, robotIcon, text, url) {
             "           </div>";
     }
     $(message).appendTo(".chat-content");
-    $('.chat-content').off("scroll.prevent");
-
 }
