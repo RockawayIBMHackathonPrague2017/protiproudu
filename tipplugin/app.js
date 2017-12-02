@@ -162,9 +162,6 @@ function addMessagePost(type, nameProduct, image, robotIcon, text, url) {
     var message = "";
     if (type == 'product') {
         message = "        <div class='message-product message-post'>" +
-            "                <div class=\"chat-ts-image-container sc-htoDjs vmYlS\">" +
-            "                   <img class=\"chat-ts-image sc-gzVnrw hLGSaN\" src=\"" + robotIcon + "\" alt=\"avatar\">" +
-            "                </div>" +
             "           <a href='" + url + "'><figure><img src=" + image + "><figcaption>" + nameProduct + "</figcaption></figure></a>" +
             "        </div>";
     } else if (type == 'message') {
@@ -177,4 +174,10 @@ function addMessagePost(type, nameProduct, image, robotIcon, text, url) {
             "           </div>";
     }
     $(message).appendTo(".chat-content");
+    getMessages();
+}
+
+function getMessages() {
+    var div = $(".chat-content");
+    div.scrollTop(div.prop('scrollHeight'));
 }
