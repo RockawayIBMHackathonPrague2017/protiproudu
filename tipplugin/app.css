@@ -2,14 +2,6 @@
     width: 100% !important;
 }
 
-.rsc {
-    position: fixed;
-    bottom: 0;
-    padding: 2px;
-    background: #CCCCCC;
-    right: 0;
-}
-
 /* sc-component-id: sc-keyframes-yGVCZ */
 @-webkit-keyframes yGVCZ {
     0% {
@@ -81,6 +73,40 @@
 
 /* sc-component-id: sc-bdVaJa */
 
+.biAEAb {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    background: #6e48aa;
+    bottom: 32px;
+    border-radius: 100%;
+    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.15);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    fill: #fff;
+    height: 56px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: fixed;
+    right: 32px;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform .3s ease;
+    -webkit-transition: transform .3s ease;
+    transition: transform .3s ease;
+    width: 56px;
+    z-index: 999;
+}
+
+/* sc-component-id: sc-jzJRlG */
+
 .hseFPs {
     -webkit-animation: yGVCZ 1.4s infinite both;
     animation: yGVCZ 1.4s infinite both;
@@ -104,7 +130,7 @@
 
 /* sc-component-id: sc-htpNat */
 
-.hvWyFD {
+.message-button {
     -webkit-animation: Lmuha .3s ease forwards;
     animation: Lmuha .3s ease forwards;
     cursor: pointer;
@@ -142,7 +168,7 @@
 
 /* sc-component-id: sc-bZQynM */
 
-.fhAWVE {
+.message {
     -webkit-animation: Lmuha .3s ease forwards;
     animation: Lmuha .3s ease forwards;
     background: #6E48AA;
@@ -234,15 +260,15 @@
 
 /* sc-component-id: sc-iwsKbI */
 
-.kdZMGe {
+.chat {
     background: #f5f8fb;
     border-radius: 10px;
     box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.15);
     font-family: monospace;
     overflow: hidden;
-    position: relative;
-    bottom: initial;
-    right: initial;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
     width: 350px;
     z-index: 999;
     -webkit-transform: scale(1);
@@ -257,7 +283,7 @@
 }
 
 @media screen and (max-width: 568px) {
-    .kdZMGe {
+    .chat {
         bottom: 0;
         height: 100%;
         right: 0;

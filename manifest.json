@@ -17,13 +17,15 @@
         "libs/jquery.js",
         "libs/highlight.min.js",
         "libs/buttons.js",
+        "libs/modernizr.touch.js",
         "tipplugin/app.js"
         //"helpers/persistentKeyValue.js",
         //  "options/values.js",
         // "fio-ebroker/design.js"
       ],
       "css": [
-        "tipplugin/app.css"
+        "tipplugin/app.css",
+        "libs/mfb.css"
       ],
       //the name of the file to be injected
       "run_at": "document_end"
