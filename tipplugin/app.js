@@ -101,9 +101,10 @@ function addSmallBox(url, image, motivationText, price) {
 
     var box = "<ul class=\"promo-boxes-wrapper\" style=\"margin-top: 10px\">" +
         "<li class=\"promo-box\">" +
-        "<a style=\"background-image: url(" + image + ");\" class=\"promo-box-head\" href=\"" + url + "\"></a>" +
+        "<span class='promotion'>Tento mobil nabídne lepší výkon za přibližně stejnou cenu</span>" +
+        "<a style=\"background-image: url(" + image + "); margin-top: 5px;\" class=\"promo-box-head\" href=\"" + url + "\"></a>" +
         "<a class=\"link--primary promo-box-title\" style=\"font-color:black;line-height: 1.4; letter-spacing: -0.01em; font-size: 1.1em;\" analytics-label=\"931819\" analytics-event=\"Box1\" analytics-category=\"TV - kampaň\" analytics-on=\"click\" href=\"" + url + "\">" +
-        "<span class=\"link--secondary\" style=\"text-decoration:underline\">" + motivationText +
+        "<span class=\"link--secondary\" style=\"text-decoration:underline;\">" + motivationText +
         "</span>" +
         price +
         "</a></li>";

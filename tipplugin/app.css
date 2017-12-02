@@ -1,5 +1,23 @@
 .pro-wrapper .promo-boxes-wrapper .promo-box {
     width: 100% !important;
+    height: 220px;
+}
+
+.pro-wrapper .promo-boxes-wrapper .promo-box .promotion {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+@media (max-width: 640px) {
+    .pro-wrapper .promo-boxes-wrapper .promo-box {
+        height: 274px;
+    }
+}
+
+@media (min-width: 640px)  and (max-width: 1024px) {
+    .pro-wrapper .promo-boxes-wrapper .promo-box {
+        height: 250px;
+    }
 }
 
 /* sc-component-id: sc-keyframes-yGVCZ */
