@@ -14,7 +14,9 @@ $(document).ready(function () {
                 //format: "json"
             })
                 .done(function (data) {
-                    addSmallBox(data.url, data.image, data.motivationText, data.price);
+                    if(data.url !== undefined) {
+                        addSmallBox(data.url, data.image, data.motivationText, data.price);
+                    }
                 });
         })();
 
