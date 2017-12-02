@@ -74,6 +74,11 @@ function createChat(text) {
     });
 
     $("#no").click(function () {
+        $('.chat-content').hide();
+        $('#menu').show();
+    });
+
+    $("#yes").click(function () {
         var productID = $('[data-sel~="catalog-number"]').text();
         (function () {
             var apiUrl = "https://api.logoman.cz/api/chatbot/" + productID;
