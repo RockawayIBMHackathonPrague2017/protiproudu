@@ -8,7 +8,7 @@ $(document).ready(function () {
         var productID = $('[data-sel~="catalog-number"]').text();
 
         (function () {
-            var apiUrl = "https://api.logoman.cz/api/product/" + productID;
+            var apiUrl = "http://localhost/api/product/" + productID;
 
             $.getJSON(apiUrl, {
                 //format: "json"
@@ -31,7 +31,7 @@ $(document).ready(function () {
         })();
 
         (function () {
-            var apiUrl = "https://api.logoman.cz/api/chatbot/index/" + productID;
+            var apiUrl = "http://localhost/api/chatbot/index/" + productID;
 
             $.getJSON(apiUrl, {
                 //format: "json"
@@ -87,7 +87,7 @@ function createChat(text, image, nameProduct, url) {
         $("#chat-input").val('');
         event.preventDefault();
         (function () {
-            var apiUrl = "https://api.logoman.cz/api/chatbot/talk/";
+            var apiUrl = "http://localhost/api/chatbot/talk/";
 
             $.getJSON(apiUrl, {
                 "text": text
@@ -98,7 +98,7 @@ function createChat(text, image, nameProduct, url) {
                         if (data.successData === 'success') {
                             (function () {
                                 var productID = $('[data-sel~="catalog-number"]').text();
-                                var apiUrl = "https://api.logoman.cz/api/chatbot/index/" + productID;
+                                var apiUrl = "http://localhost/api/chatbot/index/" + productID;
 
                                 $.getJSON(apiUrl, {
                                     //format: "json"

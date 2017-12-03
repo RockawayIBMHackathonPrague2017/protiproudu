@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "TipPlugin",
-  "version": "0.1",
+  "version": "1.0",
   "options_page": "options/options.html",
   "permissions": [
     "storage",
@@ -19,15 +19,11 @@
         "libs/buttons.js",
         "libs/modernizr.touch.js",
         "tipplugin/app.js"
-        //"helpers/persistentKeyValue.js",
-        //  "options/values.js",
-        // "fio-ebroker/design.js"
       ],
       "css": [
         "tipplugin/app.css",
         "libs/mfb.css"
       ],
-      //the name of the file to be injected
       "run_at": "document_end"
     }
   ]
